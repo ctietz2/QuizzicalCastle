@@ -1249,7 +1249,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1886dd855b9cb1c4c8b47aa785fe826b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentPlatform: {fileID: 0}
+  parentPlatform: {fileID: 2103946829}
+  snowTiles:
+  - {fileID: 1562883689}
+  - {fileID: 1499845378}
+  - {fileID: 370602904}
   speed: 5
 --- !u!1 &624664285
 GameObject:
@@ -2663,7 +2667,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1886dd855b9cb1c4c8b47aa785fe826b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentPlatform: {fileID: 0}
+  parentPlatform: {fileID: 2103946829}
+  snowTiles:
+  - {fileID: 1562883689}
+  - {fileID: 1499845378}
+  - {fileID: 370602904}
   speed: 5
 --- !u!1001 &1425970007
 PrefabInstance:
@@ -2866,7 +2874,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1886dd855b9cb1c4c8b47aa785fe826b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentPlatform: {fileID: 0}
+  parentPlatform: {fileID: 2103946829}
+  snowTiles:
+  - {fileID: 1562883689}
+  - {fileID: 1499845378}
+  - {fileID: 370602904}
   speed: 5
 --- !u!1 &1498357364
 GameObject:
@@ -3900,7 +3912,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1886dd855b9cb1c4c8b47aa785fe826b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentPlatform: {fileID: 0}
+  parentPlatform: {fileID: 2103946829}
+  snowTiles:
+  - {fileID: 1562883689}
+  - {fileID: 1499845378}
+  - {fileID: 370602904}
   speed: 5
 --- !u!1 &2011466719
 GameObject:
