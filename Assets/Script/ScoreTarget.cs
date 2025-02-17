@@ -13,9 +13,10 @@ namespace Valve.VR.InteractionSystem
 	//-------------------------------------------------------------------------
 	public class ArcheryTarget : MonoBehaviour
 	{
+		public static int score = 0;
 		public UnityEvent onTakeDamage;
 
-		public bool onceOnly = false;
+		public bool onceOnly = true;
 		public Transform targetCenter;
 
 		public Transform baseTransform;
@@ -44,38 +45,9 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void OnDamageTaken()
 		{
-			if ( targetEnabled )
-			{
-				onTakeDamage.Invoke();
-				StartCoroutine( this.GoToCastle() );
-
-				if ( onceOnly )
-				{
-					targetEnabled = false;
-				}
-			}
-		}
-
-
-		//-------------------------------------------------
-		private IEnumerator GoToCastle()
-		{
-			Vector3[] Floor1 = { new Vector3(1, 1,0.5f) };
-			Vector3[] Floor2 = { };
-			Vector3[] Floor3 = { };
-			int spawnPoint = Random.Range(0,Floor1.Length+Floor2.Length+Floor3.Length);
-			if (spawnPoint < Floor1.Length)
-			{
-				this.gameObject.transform.position = Floor1[spawnPoint];
-			}
-			else if (spawnPoint < Floor1.Length + Floor2.Length)
-			{
-				this.gameObject.transform.position = Floor2[spawnPoint - Floor1.Length];
-			}
-			else {
-				this.gameObject.transform.position = Floor2[spawnPoint - (Floor1.Length+Floor2.Length)];
-			}
-			yield return null;
+			onTakeDamage.Invoke();
+			score++;
+			this.gameObject.SetActive(false);
 		}
 	}
 }
