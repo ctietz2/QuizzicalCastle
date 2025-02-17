@@ -5186,7 +5186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3122834042017263728}
-  - component: {fileID: -8780465911349167500}
+  - component: {fileID: 579156597118120433}
   m_Layer: 0
   m_Name: ArcheryWeeble
   m_TagString: Untagged
@@ -5211,7 +5211,7 @@ Transform:
   - {fileID: 6886087688267609881}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-8780465911349167500
+--- !u!114 &579156597118120433
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5226,7 +5226,7 @@ MonoBehaviour:
   onTakeDamage:
     m_PersistentCalls:
       m_Calls: []
-  onceOnly: 1
+  onceOnly: 0
   targetCenter: {fileID: 0}
   baseTransform: {fileID: 0}
   fallenDownTransform: {fileID: 0}
