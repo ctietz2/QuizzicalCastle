@@ -8,6 +8,11 @@ TagManager:
   - west
   - north
   - south
+  - FxTemporaire
+  - projectile
+  - validMove
+  - snowMove
+  - finishMove
   layers:
   - Default
   - TransparentFX
