@@ -11,9 +11,9 @@ using System.Collections;
 namespace Valve.VR.InteractionSystem
 {
 	//-------------------------------------------------------------------------
-	public class ArcheryTarget : MonoBehaviour
+	public class ScoreTarget : MonoBehaviour
 	{
-		public static int score = 0;
+        
 		public UnityEvent onTakeDamage;
 
 		public bool onceOnly = true;
@@ -22,8 +22,9 @@ namespace Valve.VR.InteractionSystem
 		public Transform baseTransform;
 		public Transform fallenDownTransform;
 		public float fallTime = 0.5f;
+        public ScoreText scoreText;
 
-		const float targetRadius = 0.25f;
+        const float targetRadius = 0.25f;
 
 		private bool targetEnabled = true;
 
@@ -46,7 +47,7 @@ namespace Valve.VR.InteractionSystem
 		private void OnDamageTaken()
 		{
 			onTakeDamage.Invoke();
-			score++;
+			scoreText.score++;
 			this.gameObject.SetActive(false);
 		}
 	}
