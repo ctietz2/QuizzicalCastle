@@ -60,20 +60,16 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private IEnumerator GoToCastle()
 		{
-			Vector3[] Floor1 = { new Vector3(-15, .25f, -5), new Vector3(-15, .25f, 0), new Vector3(-15, .25f, 5), new Vector3(-15, .25f, 10), new Vector3(-15, .25f, 15), new Vector3(-10, .25f, -5), new Vector3(-10, .25f, 0), new Vector3(-10, .25f, 5), new Vector3(-10, .25f, 10), new Vector3(-10, .25f, 15), new Vector3(-10, .25f, -5), new Vector3(-5, .25f, -5), new Vector3(-5, .25f, 0), new Vector3(-5, .25f, 5), new Vector3(-5, .25f, 10), new Vector3(-5, .25f, 15), new Vector3(30, .25f, -10), new Vector3(30, .25f, -5), new Vector3(30, .25f, 0), new Vector3(30, .25f, 5), new Vector3(30, .25f, 10), new Vector3(30, .25f, 15), new Vector3(35, .25f, -10), new Vector3(35, .25f, -5), new Vector3(35,.25f,0), new Vector3(35, .25f, 5), new Vector3(35, .25f, 10), new Vector3(35, .25f, 15), new Vector3(40, .25f, -10), new Vector3(40, .25f, -5), new Vector3(40, .25f, 0), new Vector3(40, .25f, 5), new Vector3(40, .25f, 10), new Vector3(40, .25f, 15) };
-			Vector3[] Floor2 = { };
-			Vector3[] Floor3 = { };
-			int spawnPoint = Random.Range(0,Floor1.Length+Floor2.Length+Floor3.Length);
+			Vector3[] Floor1 = { new Vector3(-15, .25f, -5), new Vector3(-15, .25f, 0), new Vector3(-15, .25f, 5), new Vector3(-15, .25f, 10), new Vector3(-15, .25f, 15), new Vector3(-10, .25f, -5), new Vector3(-10, .25f, 0), new Vector3(-10, .25f, 5), new Vector3(-10, .25f, 10), new Vector3(-10, .25f, 15), new Vector3(-5, .25f, -10), new Vector3(-5, .25f, -5), new Vector3(-5, .25f, 0), new Vector3(-5, .25f, 5), new Vector3(-5, .25f, 10), new Vector3(-5, .25f, 15), new Vector3(30, .25f, -10), new Vector3(30, .25f, -5), new Vector3(30, .25f, 0), new Vector3(30, .25f, 5), new Vector3(30, .25f, 10), new Vector3(30, .25f, 15), new Vector3(35, .25f, -10), new Vector3(35, .25f, -5), new Vector3(35,.25f,0), new Vector3(35, .25f, 5), new Vector3(35, .25f, 10), new Vector3(35, .25f, 15), new Vector3(40, .25f, -10), new Vector3(40, .25f, -5), new Vector3(40, .25f, 0), new Vector3(40, .25f, 5), new Vector3(40, .25f, 10), new Vector3(40, .25f, 15) };
+			Vector3[] Floor2 = { new Vector3(-15, 5.25f, -5), new Vector3(-15, 5.25f, 0), new Vector3(-15, 5.25f, 5), new Vector3(-15, 5.25f, 10), new Vector3(-15, 5.25f, 15), new Vector3(-10, 5.25f, -5), new Vector3(-10, 5.25f, 0), new Vector3(-10, 5.25f, 5), new Vector3(-10, 5.25f, 10), new Vector3(-10, 5.25f, 15), new Vector3(-5, 5.25f, -10), new Vector3(-5, 5.25f, -5), new Vector3(-5, 5.25f, 0), new Vector3(-5, 5.25f, 5), new Vector3(-5, 5.25f, 10), new Vector3(-5, 5.25f, 15), new Vector3(25, 5.25f, -10), new Vector3(25, 5.25f, -5), new Vector3(25, 5.25f, 0), new Vector3(25, 5.25f, 5), new Vector3(25, 5.25f, 10), new Vector3(25, 5.25f, 15), new Vector3(30, 5.25f, -10), new Vector3(30, 5.25f, -5), new Vector3(30, 5.25f, 0), new Vector3(30, 5.25f, 5), new Vector3(30, 5.25f, 10), new Vector3(30, 5.25f, 15), new Vector3(35, 5.25f, -10), new Vector3(35, 5.25f, 10), new Vector3(35, 5.25f, 15), new Vector3(40, 5.25f, -10), new Vector3(40, 5.25f, 10), new Vector3(40, 5.25f, 15) };
+			int spawnPoint = Random.Range(0,Floor1.Length+Floor2.Length);
 			if (spawnPoint < Floor1.Length)
 			{
 				this.gameObject.transform.position = Floor1[spawnPoint];
 			}
-			else if (spawnPoint < Floor1.Length + Floor2.Length)
+			else 
 			{
 				this.gameObject.transform.position = Floor2[spawnPoint - Floor1.Length];
-			}
-			else {
-				this.gameObject.transform.position = Floor2[spawnPoint - (Floor1.Length+Floor2.Length)];
 			}
 			yield return null;
 		}
