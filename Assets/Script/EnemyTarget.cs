@@ -60,7 +60,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private IEnumerator GoToCastle()
 		{
-			Vector3[] Floor1 = { new Vector3(1, 1,0.5f) };
+			Vector3[] Floor1 = { new Vector3(-15, .25f, -5), new Vector3(-15, .25f, 0), new Vector3(-15, .25f, 5), new Vector3(-15, .25f, 10), new Vector3(-15, .25f, 15), new Vector3(-10, .25f, -5), new Vector3(-10, .25f, 0), new Vector3(-10, .25f, 5), new Vector3(-10, .25f, 10), new Vector3(-10, .25f, 15), new Vector3(-10, .25f, -5), new Vector3(-5, .25f, -5), new Vector3(-5, .25f, 0), new Vector3(-5, .25f, 5), new Vector3(-5, .25f, 10), new Vector3(-5, .25f, 15), new Vector3(30, .25f, -10), new Vector3(30, .25f, -5), new Vector3(30, .25f, 0), new Vector3(30, .25f, 5), new Vector3(30, .25f, 10), new Vector3(30, .25f, 15), new Vector3(35, .25f, -10), new Vector3(35, .25f, -5), new Vector3(35,.25f,0), new Vector3(35, .25f, 5), new Vector3(35, .25f, 10), new Vector3(35, .25f, 15), new Vector3(40, .25f, -10), new Vector3(40, .25f, -5), new Vector3(40, .25f, 0), new Vector3(40, .25f, 5), new Vector3(40, .25f, 10), new Vector3(40, .25f, 15) };
 			Vector3[] Floor2 = { };
 			Vector3[] Floor3 = { };
 			int spawnPoint = Random.Range(0,Floor1.Length+Floor2.Length+Floor3.Length);
