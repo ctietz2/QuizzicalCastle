@@ -1,22 +1,16 @@
-﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
-using System;
 
 namespace Valve.VR.InteractionSystem.Sample
 {
-    public class ButtonEffect : MonoBehaviour
+    public class ButtonExample : MonoBehaviour
     {
-
-        public GameObject parentPlatform;
+        public HoverButton westHoverButton;
+        public HoverButton eastHoverButton;
+        public HoverButton southHoverButton;
+        public HoverButton northHoverButton;
 
         public float speed = 5.0f;
-        /*        private float zMax = 7.5f;
-                private float zMin = -7.5f;*/
-        /*        private int xDirection;
-                private int zDirection;*/
 
         private float xValue;
         private float yValue;
@@ -31,9 +25,14 @@ namespace Valve.VR.InteractionSystem.Sample
 
         private void Start()
         {
-            xValue = parentPlatform.transform.position.x;
-            yValue = parentPlatform.transform.position.y;
-            zValue = parentPlatform.transform.position.z;
+            westHoverButton.onButtonDown.AddListener(OnWestButtonDown);
+            eastHoverButton.onButtonDown.AddListener(OnEastButtonDown);
+            southHoverButton.onButtonDown.AddListener(OnSouthButtonDown);
+            northHoverButton.onButtonDown.AddListener(OnNorthButtonDown);
+
+            xValue = this.transform.position.x;
+            yValue = this.transform.position.y;
+            zValue = this.transform.position.z;
         }
 
         private void Update()
@@ -42,8 +41,8 @@ namespace Valve.VR.InteractionSystem.Sample
             if (processingRequest)
             {
 
-                float xNew = parentPlatform.transform.position.x + direction.x * speed * Time.deltaTime;
-                float zNew = parentPlatform.transform.position.z + direction.z * speed * Time.deltaTime;
+                float xNew = this.transform.position.x + direction.x * speed * Time.deltaTime;
+                float zNew = this.transform.position.z + direction.z * speed * Time.deltaTime;
 
                 bool xCloseEnough = Mathf.Approximately(xNew, xRequested);
                 bool zCloseEnough = Mathf.Approximately(zNew, zRequested);
@@ -68,40 +67,49 @@ namespace Valve.VR.InteractionSystem.Sample
             }
         }
 
-        public void OnButtonDown(Hand fromHand)
+        private void OnWestButtonDown(Hand hand)
         {
-            movePlatform();
-            fromHand.TriggerHapticPulse(1000);
+            movePlatform("west");
         }
 
-        public void OnButtonUp(Hand fromHand)
+        private void OnEastButtonDown(Hand hand)
         {
-
+            movePlatform("east");
         }
 
-        private void movePlatform()
+        private void OnSouthButtonDown(Hand hand)
+        {
+            movePlatform("south");
+        }
+
+        private void OnNorthButtonDown(Hand hand)
+        {
+            movePlatform("north");
+        }
+
+        private void movePlatform(string buttonPressed)
         {
 
             if (processingRequest == false)
             {
                 processingRequest = true;
 
-                if (gameObject.CompareTag("north"))
+                if (string.Equals(buttonPressed, "north"))
                 {
                     direction = new Vector3(0, 0, 1);
                     (xRequested, zRequested) = haltPoint(direction);
                 }
-                else if (gameObject.CompareTag("east"))
+                else if (string.Equals(buttonPressed, "east"))
                 {
                     direction = new Vector3(1, 0, 0);
                     (xRequested, zRequested) = haltPoint(direction);
                 }
-                else if (gameObject.CompareTag("south"))
+                else if (string.Equals(buttonPressed, "south"))
                 {
                     direction = new Vector3(0, 0, -1);
                     (xRequested, zRequested) = haltPoint(direction);
                 }
-                else if (gameObject.CompareTag("west"))
+                else if (string.Equals(buttonPressed, "west"))
                 {
                     direction = new Vector3(-1, 0, 0);
                     (xRequested, zRequested) = haltPoint(direction);
