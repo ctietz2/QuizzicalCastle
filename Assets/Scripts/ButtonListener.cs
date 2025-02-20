@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Valve.VR.InteractionSystem.Sample
 {
@@ -38,30 +39,23 @@ namespace Valve.VR.InteractionSystem.Sample
         private void Update()
         {
 
-            if (processingRequest)
+            if (processingRequest == true)
             {
+                float xMin = Mathf.Min(xValue, xRequested);
+                float xMax = Mathf.Max(xValue, xRequested);
+                float zMin = Mathf.Min(zValue, zRequested);
+                float zMax = Mathf.Max(zValue, zRequested);
 
-                float xNew = this.transform.position.x + direction.x * speed * Time.deltaTime;
-                float zNew = this.transform.position.z + direction.z * speed * Time.deltaTime;
-
-                bool xCloseEnough = Mathf.Approximately(xNew, xRequested);
-                bool zCloseEnough = Mathf.Approximately(zNew, zRequested);
-
-                if (xCloseEnough)
-                {
-                    xNew = xRequested;
-                }
-
-                if (zCloseEnough)
-                {
-                    zNew = zRequested;
-                }
+                float xNew = Mathf.Clamp(this.transform.position.x + direction.x * speed * Time.deltaTime, xMin, xMax);
+                float zNew = Mathf.Clamp(this.transform.position.z + direction.z * speed * Time.deltaTime, zMin, zMax);
 
                 transform.position = new Vector3(xNew, yValue, zNew);
 
-                if (xCloseEnough && zCloseEnough)
+                if ((xNew == xMin || xNew == xMax) && (zNew == zMin || zNew == zMax))
                 {
                     processingRequest = false;
+                    xValue = this.transform.position.x;
+                    zValue = this.transform.position.z;
                 }
 
             }
@@ -69,51 +63,61 @@ namespace Valve.VR.InteractionSystem.Sample
 
         private void OnWestButtonDown(Hand hand)
         {
-            movePlatform("west");
+            if (processingRequest == false)
+            {
+                processingRequest = true;
+                movePlatform("west");
+            }
         }
 
         private void OnEastButtonDown(Hand hand)
         {
-            movePlatform("east");
+            if (processingRequest == false)
+            {
+                processingRequest = true;
+                movePlatform("east");
+            }
         }
 
         private void OnSouthButtonDown(Hand hand)
         {
-            movePlatform("south");
+            if (processingRequest == false)
+            {
+                processingRequest = true;
+                movePlatform("south");
+            }
         }
 
         private void OnNorthButtonDown(Hand hand)
         {
-            movePlatform("north");
+            if (processingRequest == false)
+            {
+                processingRequest = true;
+                movePlatform("north");
+            }
         }
 
         private void movePlatform(string buttonPressed)
         {
-
-            if (processingRequest == false)
+            if (string.Equals(buttonPressed, "north"))
             {
-                processingRequest = true;
-
-                if (string.Equals(buttonPressed, "north"))
-                {
-                    direction = new Vector3(0, 0, 1);
-                    (xRequested, zRequested) = haltPoint(direction);
-                }
-                else if (string.Equals(buttonPressed, "east"))
-                {
-                    direction = new Vector3(1, 0, 0);
-                    (xRequested, zRequested) = haltPoint(direction);
-                }
-                else if (string.Equals(buttonPressed, "south"))
-                {
-                    direction = new Vector3(0, 0, -1);
-                    (xRequested, zRequested) = haltPoint(direction);
-                }
-                else if (string.Equals(buttonPressed, "west"))
-                {
-                    direction = new Vector3(-1, 0, 0);
-                    (xRequested, zRequested) = haltPoint(direction);
-                }
+                direction = new Vector3(0, 0, 1);
+                (xRequested, zRequested) = haltPoint(direction);
+            }
+            else if (string.Equals(buttonPressed, "east"))
+            {
+                direction = new Vector3(1, 0, 0);
+                (xRequested, zRequested) = haltPoint(direction);
+            }
+            else if (string.Equals(buttonPressed, "south"))
+            {
+                direction = new Vector3(0, 0, -1);
+                (xRequested, zRequested) = haltPoint(direction);
+            }
+            else if (string.Equals(buttonPressed, "west"))
+            {
+                direction = new Vector3(-1, 0, 0);
+                (xRequested, zRequested) = haltPoint(direction);
             }
         }
 
@@ -127,44 +131,49 @@ namespace Valve.VR.InteractionSystem.Sample
             while (validMove)
             {
                 // Probe 10 units in the chosen direction for any objects. If one exists, the movement is no longer valid.
-                print("Before x:" + xNew + "; y:" + yValue + "; z:" + zNew);
+                Debug.Log("Before x:" + xNew + "; y:" + yValue + "; z:" + zNew);
                 newLocation = (directionality * 10) + new Vector3(xNew, yValue, zNew);
-                print("Actual x:" + newLocation.x + "; y:" + newLocation.y + "; z:" + newLocation.z);
+                Debug.Log("Probe x:" + newLocation.x + "; y:" + newLocation.y + "; z:" + newLocation.z);
                 Collider[] intersecting = whatObjectsHere(newLocation);
-                print(intersecting);
+                Debug.Log(intersecting.ToString());
+                string moveType = "invalid";
                 foreach (Collider collider in intersecting)
                 {
-                    if (collider.gameObject.CompareTag("validMove"))
+                    if (collider.gameObject.name.Contains("ValidCube"))
                     {
-                        xNew = newLocation.x;
-                        zNew = newLocation.z;
-                    }
-                    else if (collider.gameObject.CompareTag("snowMove"))
-                    {
-                        validMove = false;
-                        xNew = newLocation.x;
-                        zNew = newLocation.z;
-                    }
-                    else if (collider.gameObject.CompareTag("finishMove")) // Add logic to "unbuckle" player
-                    {
-                        validMove = false;
-                        xNew = newLocation.x;
-                        zNew = newLocation.z;
-                    }
-                    else
-                    {
-                        validMove = false;
+                        moveType = collider.gameObject.tag;
+                        Debug.Log(moveType);
                     }
                 }
+                if (string.Equals(moveType, "validMove"))
+                {
+                    xNew = newLocation.x;
+                    zNew = newLocation.z;
+                }
+                else if (string.Equals(moveType, "snowMove"))
+                {
+                    validMove = false;
+                    xNew = newLocation.x;
+                    zNew = newLocation.z;
+                }
+                else if (string.Equals(moveType, "finishMove")) // Add logic to "unbuckle" player
+                {
+                    validMove = false;
+                    xNew = newLocation.x;
+                    zNew = newLocation.z;
+                }
+                else
+                {
+                    validMove = false;
+                }
             }
-
+            Debug.Log("Final x:" + xNew + "; y:" + yValue + "; z:" + zNew);
             return (xNew, zNew);
         }
 
         private Collider[] whatObjectsHere(Vector3 position)
         {
             Collider[] intersecting = Physics.OverlapSphere(position, 5.0f);
-            print(intersecting);
             return intersecting;
         }
     }
