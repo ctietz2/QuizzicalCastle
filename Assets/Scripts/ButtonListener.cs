@@ -132,7 +132,7 @@ namespace Valve.VR.InteractionSystem.Sample
             {
                 // Probe 10 units in the chosen direction for any objects. If one exists, the movement is no longer valid.
                 Debug.Log("Before x:" + xNew + "; y:" + yValue + "; z:" + zNew);
-                newLocation = (directionality * 10) + new Vector3(xNew, yValue, zNew);
+                newLocation = (directionality * 5) + new Vector3(xNew, yValue, zNew);
                 Debug.Log("Probe x:" + newLocation.x + "; y:" + newLocation.y + "; z:" + newLocation.z);
                 Collider[] intersecting = whatObjectsHere(newLocation);
                 Debug.Log(intersecting.ToString());
@@ -173,7 +173,7 @@ namespace Valve.VR.InteractionSystem.Sample
 
         private Collider[] whatObjectsHere(Vector3 position)
         {
-            Collider[] intersecting = Physics.OverlapSphere(position, 5.0f);
+            Collider[] intersecting = Physics.OverlapSphere(position, 1.0f);
             return intersecting;
         }
     }
