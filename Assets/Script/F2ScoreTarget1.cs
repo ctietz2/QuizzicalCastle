@@ -11,9 +11,9 @@ using System.Collections;
 namespace Valve.VR.InteractionSystem
 {
 	//-------------------------------------------------------------------------
-	public class ArcheryTarget : MonoBehaviour
+	public class F2ScoreTarget : MonoBehaviour
 	{
-		public static int score = 0;
+		public GateKeeper GateKeeper;
 		public UnityEvent onTakeDamage;
 
 		public bool onceOnly = true;
@@ -46,7 +46,7 @@ namespace Valve.VR.InteractionSystem
 		private void OnDamageTaken()
 		{
 			onTakeDamage.Invoke();
-			score++;
+			GateKeeper.F2Score++;
 			this.gameObject.SetActive(false);
 		}
 	}
