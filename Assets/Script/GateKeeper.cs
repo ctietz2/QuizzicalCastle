@@ -34,7 +34,7 @@ public class GateKeeper : MonoBehaviour
             //play floor 2 audio + score status
         }
         if (F1Score + F2Score == 16 && !gateRaised) {
-            gate.transform.position = new Vector3(gate.transform.position.x, gate.transform.position.y + 0.1f, gate.transform.position.z);
+            gate.transform.position = new Vector3(gate.transform.position.x, gate.transform.position.y +5, gate.transform.position.z);
             gateRaised = true;
         }
     }
