@@ -2496,7 +2496,7 @@ MonoBehaviour:
   eastHoverButton: {fileID: 1533032261}
   southHoverButton: {fileID: 1804196482}
   northHoverButton: {fileID: 536327972}
-  speed: 5
+  speed: 2
 --- !u!1001 &208065553
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8188,7 +8188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHolder: {fileID: 1226840736}
-  playerCollider: {fileID: 0}
+  playerCollider: {fileID: 1536942635}
 --- !u!1001 &730675600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12803,7 +12803,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: aa77b49573dfc5d48b3c1330f5cb9b31, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -18380,7 +18380,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ed43910c851476a4fa177a5d48bc5936, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -18914,7 +18914,7 @@ PrefabInstance:
     - target: {fileID: 3122834042017263728, guid: 33906ef74ddb8aa4eb66bb1d29c51dd2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.63
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3122834042017263728, guid: 33906ef74ddb8aa4eb66bb1d29c51dd2,
         type: 3}
