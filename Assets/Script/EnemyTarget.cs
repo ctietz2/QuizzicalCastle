@@ -14,6 +14,7 @@ namespace Valve.VR.InteractionSystem
 	public class EnemyTarget : MonoBehaviour
 	{
 		public UnityEvent onTakeDamage;
+		public GameObject enemy;
 
 		public bool onceOnly = false;
 		public Transform targetCenter;
@@ -65,11 +66,11 @@ namespace Valve.VR.InteractionSystem
 			int spawnPoint = Random.Range(0,Floor1.Length+Floor2.Length);
 			if (spawnPoint < Floor1.Length)
 			{
-				this.gameObject.transform.position = Floor1[spawnPoint];
+                enemy.transform.position = Floor1[spawnPoint];
 			}
 			else 
 			{
-				this.gameObject.transform.position = Floor2[spawnPoint - Floor1.Length];
+                enemy.transform.position = Floor2[spawnPoint - Floor1.Length];
 			}
 			yield return null;
 		}

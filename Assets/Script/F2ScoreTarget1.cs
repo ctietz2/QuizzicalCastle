@@ -45,6 +45,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void OnDamageTaken()
 		{
+			Debug.Log("Hello World");
 			onTakeDamage.Invoke();
 			GateKeeper.F2Score++;
 			this.gameObject.SetActive(false);

@@ -13,6 +13,8 @@ TagManager:
   - validMove
   - snowMove
   - finishMove
+  - Enemy
+  - player
   layers:
   - Default
   - TransparentFX
