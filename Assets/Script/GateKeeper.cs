@@ -8,15 +8,7 @@ public class GateKeeper : MonoBehaviour
     public GameObject gate2; 
     public AudioSource Floor1;
     public AudioSource Floor2;
-    private AudioSource[] scores;
-    public AudioSource oneOfEight;
-    public AudioSource twoOfEight;
-    public AudioSource threeOfEight;
-    public AudioSource fourOfEight;
-    public AudioSource fiveOfEight;
-    public AudioSource sixOfEight;
-    public AudioSource sevenOfEight;
-    public AudioSource eightOfEight;
+    public AudioSource[] scores;
     public int F1Score;
     public int F2Score;
     public int F1Debounce;
@@ -30,7 +22,6 @@ public class GateKeeper : MonoBehaviour
         F2Score = 0;
         F2Debounce = 0;
         gateRaised = false;
-        scores = {oneOfEight, twoOfEight, threeOfEight,fourOfEight, fiveOfEight, sixOfEight, sevenOfEight, eightOfEight}
     }
 
     // Update is called once per frame
