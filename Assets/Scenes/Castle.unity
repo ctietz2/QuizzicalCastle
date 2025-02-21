@@ -2496,6 +2496,7 @@ MonoBehaviour:
   eastHoverButton: {fileID: 1533032261}
   southHoverButton: {fileID: 1804196482}
   northHoverButton: {fileID: 536327972}
+  gateKeeper: {fileID: 1615552349}
   speed: 2
 --- !u!1001 &208065553
 PrefabInstance:

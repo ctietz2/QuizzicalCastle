@@ -4,12 +4,14 @@ using System.Collections.Generic;
 
 namespace Valve.VR.InteractionSystem.Sample
 {
-    public class ButtonExample : MonoBehaviour
+    public class ButtonListener : MonoBehaviour
     {
         public HoverButton westHoverButton;
         public HoverButton eastHoverButton;
         public HoverButton southHoverButton;
         public HoverButton northHoverButton;
+
+        public GateKeeper gateKeeper;
 
         public float speed = 5.0f;
 
@@ -63,7 +65,7 @@ namespace Valve.VR.InteractionSystem.Sample
 
         private void OnWestButtonDown(Hand hand)
         {
-            if (processingRequest == false)
+            if (processingRequest == false && gateKeeper.gateRaised)
             {
                 processingRequest = true;
                 movePlatform("west");
@@ -72,7 +74,7 @@ namespace Valve.VR.InteractionSystem.Sample
 
         private void OnEastButtonDown(Hand hand)
         {
-            if (processingRequest == false)
+            if (processingRequest == false && gateKeeper.gateRaised)
             {
                 processingRequest = true;
                 movePlatform("east");
@@ -81,7 +83,7 @@ namespace Valve.VR.InteractionSystem.Sample
 
         private void OnSouthButtonDown(Hand hand)
         {
-            if (processingRequest == false)
+            if (processingRequest == false && gateKeeper.gateRaised)
             {
                 processingRequest = true;
                 movePlatform("south");
@@ -90,7 +92,7 @@ namespace Valve.VR.InteractionSystem.Sample
 
         private void OnNorthButtonDown(Hand hand)
         {
-            if (processingRequest == false)
+            if (processingRequest == false && gateKeeper.gateRaised)
             {
                 processingRequest = true;
                 movePlatform("north");
