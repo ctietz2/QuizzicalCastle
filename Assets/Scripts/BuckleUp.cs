@@ -16,6 +16,7 @@ public class BuckleUp : MonoBehaviour
     {
         player = Player.instance;
         sitting = false;
+        player.transform.parent = playerHolder.transform;
     }
 
     // Update is called once per frame
