@@ -5,7 +5,18 @@ using UnityEngine;
 public class GateKeeper : MonoBehaviour
 {
     public GameObject gate1;
-    public GameObject gate2;
+    public GameObject gate2; 
+    public AudioSource Floor1;
+    public AudioSource Floor2;
+    private AudioSource[] scores;
+    public AudioSource oneOfEight;
+    public AudioSource twoOfEight;
+    public AudioSource threeOfEight;
+    public AudioSource fourOfEight;
+    public AudioSource fiveOfEight;
+    public AudioSource sixOfEight;
+    public AudioSource sevenOfEight;
+    public AudioSource eightOfEight;
     public int F1Score;
     public int F2Score;
     public int F1Debounce;
@@ -19,6 +30,7 @@ public class GateKeeper : MonoBehaviour
         F2Score = 0;
         F2Debounce = 0;
         gateRaised = false;
+        scores = {oneOfEight, twoOfEight, threeOfEight,fourOfEight, fiveOfEight, sixOfEight, sevenOfEight, eightOfEight}
     }
 
     // Update is called once per frame
@@ -27,17 +39,29 @@ public class GateKeeper : MonoBehaviour
         if (F1Score > F1Debounce)
         {
             F1Debounce++;
-            //play floor 1 audio + score status
+            StartCoroutine(announceScore(Floor1, scores[F1Score - 1]));
         }
         if (F2Score > F2Debounce)
         {
             F2Debounce++;
-            //play floor 2 audio + score status
+            StartCoroutine(announceScore(Floor2, scores[F2Score - 1]));
         }
         if (F1Score + F2Score == 16 && !gateRaised) {
             gate1.transform.position = new Vector3(gate1.transform.position.x, gate1.transform.position.y + 5, gate1.transform.position.z);
             gate2.transform.position = new Vector3(gate2.transform.position.x, gate2.transform.position.y + 5, gate2.transform.position.z);
             gateRaised = true;
+        }
+    }
+
+    IEnumerator announceScore(AudioSource floor, AudioSource score) {
+        floor.Play();
+        while (floor.isPlaying) {
+            yield return null;
+        }
+        score.Play();
+        while (floor.isPlaying)
+        {
+            yield return null;
         }
     }
 }
