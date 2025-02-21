@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR.InteractionSystem;
 
-public class NewBehaviourScript : MonoBehaviour
+public class BuckleUp : MonoBehaviour
 {
-
-    public GameObject playerSeat;
+    public GameObject playerHolder;
+    public GameObject playerCollider;
     private Player player;
 
     private bool sitting;
@@ -26,10 +26,19 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "player_seat")
+        if (other.gameObject.tag == "player")
         {
             sitting = true;
-            player.transform.parent = player_holder.transform;
+            player.transform.parent = playerHolder.transform;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "player")
+        {
+            sitting = false;
+            player.transform.parent = null;
         }
     }
 }
