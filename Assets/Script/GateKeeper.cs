@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GateKeeper : MonoBehaviour
 {
-    public GameObject gate;
+    public GameObject gate1;
+    public GameObject gate2;
     public int F1Score;
     public int F2Score;
     public int F1Debounce;
@@ -34,7 +35,8 @@ public class GateKeeper : MonoBehaviour
             //play floor 2 audio + score status
         }
         if (F1Score + F2Score == 16 && !gateRaised) {
-            gate.transform.position = new Vector3(gate.transform.position.x, gate.transform.position.y +5, gate.transform.position.z);
+            gate1.transform.position = new Vector3(gate1.transform.position.x, gate1.transform.position.y + 5, gate1.transform.position.z);
+            gate2.transform.position = new Vector3(gate2.transform.position.x, gate2.transform.position.y + 5, gate2.transform.position.z);
             gateRaised = true;
         }
     }
